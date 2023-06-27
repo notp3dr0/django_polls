@@ -18,4 +18,5 @@ def sobre(request):
 
 def exibe_questao(request, question_id):
     questao = Question.objects.get(id=question_id)
+    return HttpResponse(questao.question_text)
 
