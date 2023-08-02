@@ -11,6 +11,7 @@ def ultimas_perguntas(request):
     return render(request, 'polls/perguntas.html', context)
 
 def index(request):
+    context = {'titulo': Página Principal}
     return HttpResponse('Olá... seja bem vindo a enquete')
 
 def sobre(request):
