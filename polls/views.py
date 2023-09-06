@@ -43,4 +43,3 @@ class QuestionCreateView(CreateView):
     model= Question
     fields= ('question_text', 'pub_date')
     success_url: reverse_lazy('index')
-
