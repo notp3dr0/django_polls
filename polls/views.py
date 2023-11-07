@@ -1,5 +1,7 @@
 
-from django.contrib import messages
+from django.contrib.auth.decorators import login_required
+
+from django.contrib.auth.mixins import LoginRequiredMixinfrom django.contrib import messages
 
 from django.views.generic import DetailView, ListView, TemplateView
 
@@ -95,3 +97,9 @@ def form_valid(self, request, *args, **kwargs):
     messages.success(self.request, self.success_message)
     return super(QuestionDeleteView, self).form_valid(request, *args, **kwargs)
 
+# localizar as views e modificá-las
+@login_required # controle de acesso usando o decorador de função
+def sobre(request):
+    return HttpResponse('Este é um app de enquete!')
+class QuestionDeleteView(LoginRequiredMixin, DeleteView):
+    model = Question
