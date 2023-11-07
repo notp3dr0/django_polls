@@ -1,5 +1,6 @@
 from django.views.generic.edit import CreateView, UpdateView
 
+from django.views.generic.edit import CreateView, UpdateView, DeleteView
 
 from django.shortcuts import render
 
@@ -47,3 +48,9 @@ class QuestionCreateView(CreateView):
     model= Question
     fields= ('question_text', 'pub_date')
     success_url: reverse_lazy('index')
+
+
+class QuestionDeleteView(DeleteView):
+    model = Question
+    template_name = 'polls/question_confirm_delete_form.html'
+    success_url = reverse_lazy('polls_list')

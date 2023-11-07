@@ -13,4 +13,8 @@ Mega Enquetes
 </article>
 {% endfor %}
 {% endblock %}
-<!-- fecha o bloco content -->  
+<!-- fecha o bloco content --> 
+
+<a href="{% url 'poll_delete' pk=question.id %}" class="link-secondary">
+    Excluir
+    </a> 
