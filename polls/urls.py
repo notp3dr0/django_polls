@@ -24,4 +24,25 @@ name="poll_delete"
 ),
 ]
 
+from . import views
+urlpatterns = [
+# (...manter tudo o que já existe…)
+path('pergunta/<int:pk>/show',
+views.QuestionDetailView.as_view(),
+name="poll_show"
+),
+path('pergunta/all',
+views.QuestionListView.as_view(),
+name="polls_all"
+),
+]
+
+from . import views
+urlpatterns = [
+# (...manter tudo o que já existe…)
+path('about-us',
+views.SobreTemplateView.as_view(),
+name="about_page"
+),
+]
 

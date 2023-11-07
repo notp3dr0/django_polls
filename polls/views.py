@@ -1,3 +1,10 @@
+
+from django.views.generic import DetailView, ListView, TemplateView
+
+from django.views.generic import DetailView, ListView
+
+from django.views.generic import DetailView
+
 from django.views.generic.edit import CreateView, UpdateView
 
 from django.views.generic.edit import CreateView, UpdateView, DeleteView
@@ -54,3 +61,17 @@ class QuestionDeleteView(DeleteView):
     model = Question
     template_name = 'polls/question_confirm_delete_form.html'
     success_url = reverse_lazy('polls_list')
+
+
+class QuestionDetailView(DetailView):
+    model = Question
+    template_name = 'polls/question_detail.html'
+    context_object_name = 'question'
+
+class QuestionListView(ListView):
+    model = Question
+    template_name = 'polls/question_list.html'
+    context_object_name = 'questions'
+
+class SobreTemplateView(TemplateView):
+    template_name = 'polls/sobre.html'

@@ -1,0 +1,36 @@
+{% extends '_layout1.html' %} {# herda tudo que já tem em _layout1.html #}
+{% block content %} {# substitui o bloco content em _layout1.html #}
+<div class="card">
+<div class="card-header">
+<h5 class="card-title">Pergunta</h5>
+</div>
+<div class="card-body">
+<p>
+{{ question.question_text }}
+<a href="{% url 'poll_edit' pk=question.id %}" class="link-secondary">
+Editar
+</a> &nbsp;
+<a href="{% url 'poll_delete' pk=question.id %}" class="link-secondary">
+Excluir
+</a>
+</p>
+<p>Data de publicação: {{ question.pub_date }}</p>
+</div>
+</div>
+{% endblock %} {# fecha o bloco content #}
+(salve o arquivo).
+Passo 2: Criar a rota para view QuestionDetailView
+Edite o arquivo django-polls/polls/urls.py e acrescente a nova rota seguindo o exemplo abaixo
+(atenção apenas ao conteúdo novo):
+from . import views
+urlpatterns = [
+# (...manter tudo o que já existe…)
+path('pergunta/<int:pk>/delete',
+views.QuestionDeleteView.as_view(),
+name="poll_delete"
+),
+path('pergunta/<int:pk>/show',
+views.QuestionDetailView.as_view(),
+name="poll_show"
+),
+]
