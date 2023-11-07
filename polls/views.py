@@ -1,4 +1,6 @@
 
+from django.contrib import messages
+
 from django.views.generic import DetailView, ListView, TemplateView
 
 from django.views.generic import DetailView, ListView
@@ -82,3 +84,14 @@ class QuestionListView(ListView):
     context_object_name = 'questions'
     paginate_by = 5 # quantidade de itens por página
     ordering = ['-pub_date'] # ordenar pela data de publicação de forma inversão    
+
+class QuestionDeleteView(DeleteView):
+    model = Question
+    template_name = 'polls/question_confirm_delete_form.html'
+    success_url = reverse_lazy('polls_all') # A rota de sucesso foi alterada
+    success_message = 'Pergunta excluída com sucesso.'
+
+def form_valid(self, request, *args, **kwargs):
+    messages.success(self.request, self.success_message)
+    return super(QuestionDeleteView, self).form_valid(request, *args, **kwargs)
+
